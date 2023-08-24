@@ -12,7 +12,7 @@ Session = sessionmaker(bind=engine)
 session = Session() # Query the DB with session example: session.query(ModelOne).all()
 
 # Use ipdb to interact with DB using session
-import ipdb; ipdb.set_trace() # # Dont forget to add ipdb as a dependency - pipenv install ipdb
+# import ipdb; ipdb.set_trace() # # Dont forget to add ipdb as a dependency - pipenv install ipdb
 
 
 
@@ -21,14 +21,20 @@ import ipdb; ipdb.set_trace() # # Dont forget to add ipdb as a dependency - pipe
 # import json
 
 print("Seeding...")
-import ipdb; ipdb.set_trace()
+# session.query(User.delete())
+
+
+
 for _ in range(20):
 
     first_name=fake.first_name()
     last_name=fake.last_name()
     user_name = f"{first_name}_{last_name}"
-    user = User(first_name, last_name, username = user_name)
+
+    user = User(first_name=first_name,last_name=last_name,username=user_name)
     print(user)
+
+
 # Example request
 response = requests.get(API_URL)
 json_data = json.loads(response.text)
