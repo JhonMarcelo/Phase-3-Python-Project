@@ -35,3 +35,36 @@ create list of meals
 read meals available
 update my list of meals
 delete my meal
+
+Sedentary
+
+If you’re sedentary, your daily activities include:
+Activities of daily living only, such as shopping, cleaning, watering plants, taking out the trash, walking the dog, mowing the lawn and gardening.
+No moderate of vigorous activities.
+Unless you do at least 30 minutes per day of intentional exercise, you are considered sedentary.
+Spending most of the day sitting (e.g. bank teller, desk job)
+The majority of people will be considered sedentary.
+
+Lightly Active
+
+If you’re lightly active, your daily activities include:
+Activities of daily living only, such as shopping, cleaning, watering plants, taking out the trash, walking the dog, mowing the lawn and gardening.
+Daily exercise that is equal to walking for 30 minutes at 4mph. For an adult of average weight, this amount of exercise will burn about 130-160 additional calories.
+More intense exercise can be performed for less time to achieve the same goal. For example, 15-20 minutes of vigorous activity, such as aerobics, skiing or jogging on a daily basis would put you in this category.
+Spending a good part of the day on your feet (e.g. teacher, salesman)
+
+Active
+
+If you’re active, your daily activities include:
+Activities of daily living only, such as shopping, cleaning, watering plants, taking out the trash, walking the dog, mowing the lawn and gardening.
+Daily exercise that is equal to walking for 1 hour and 45 minutes at 4mph. For an adult of average weight, this amount of exercise will burn about 470-580 additional calories.
+More intense exercise can be performed for less time. For example, jogging for 50 minutes per day.
+Spending a good part of the day doing some physical activity (e.g. waitress, mailman)
+
+Very Active
+
+If you’re very active, your daily activities include:
+Activities of daily living only, such as shopping, cleaning, watering plants, taking out the trash, walking the dog, mowing the lawn and gardening.
+Daily exercise that is equal to walking for 4 hours and 15 minutes at 4mph. For an adult of average weight, this amount of exercise will burn about 1,150-1400 additional calories.
+More intense exercise can be performed for less time. For example, jogging for 2 hours minutes per day.
+Spending most of the day doing heavy physical activity (e.g. bike messenger, carpenter)

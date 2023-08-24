@@ -32,18 +32,33 @@ for _ in range(20):
     last_name=fake.last_name()
     user_name = f"{first_name}_{last_name}"
 
-    rand = random.randint(1,3)
+
+    #1 - Sedentary 2 - Lightly - Active 3 - Active 4 - Very Active
+    activity_level = random.randint(1,4)
+    if activity_level ==1:
+        activiy = -4
+    if activity_level ==2:
+        activiy = -2
+    if activity_level ==3:
+        activiy = 0
+    if activity_level ==4:
+        activiy = 4
     
-    if rand == 1:
+
+
+    random_goal = random.randint(1,3)
+    if random_goal == 1:
         goal = "Lose Weight"
-        target_calorie = weight
-    if rand == 2:
+        target_calorie = weight * 13
+    if random_goal == 2:
         goal = "Maintain Weight"
-    if rand == 3:
+        target_calorie = weight * 15 
+    if random_goal == 3:
         goal = "Gain Weight"
+        target_calorie = weight * 17
 
     
-    user = User(username=user_name,first_name=first_name,last_name=last_name,weight=weight,goal = goal,target_calorie=)
+    user = User(username=user_name,first_name=first_name,last_name=last_name,weight=weight,activity_level=activity_level,goal = goal,target_calorie=target_calorie)
     print(user)
 
 

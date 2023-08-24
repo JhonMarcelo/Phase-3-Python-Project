@@ -25,6 +25,7 @@ class User(Base):
             + f"first_name = {self.first_name}, "\
             + f"last_name = {self.last_name}, "\
             + f"weight = {self.weight}, "\
+            + f"activity level = {self.activity_level}, "\
             + f"goal = {self.goal}, "\
             + f"target calorie = {self.target_calorie}, "\
             + f"current calorie = {self.current_calorie}, "\
