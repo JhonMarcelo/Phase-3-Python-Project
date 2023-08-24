@@ -17,6 +17,18 @@ class User(Base):
     target_calorie = Column(Integer)
     current_calorie = Column(Integer)
 
+    def __repr__(self):
+        return f"\n<User"\
+            + f"id ={self.id}, "\
+            + f"username ={self.username}, "\
+            + f"first_name ={self.first_name}, "\
+            + f"last_name ={self.last_name}, "\
+            + f"weight ={self.weight}, "\
+            + f"goal = {self.goal}, "\
+            + f"target calorie = {self.target_calorie}, "\
+            + f"current calorie = {self.current_calorie}, "\
+            + ">"
+
 
 class Meals(Base):
     __tablename__ = 'meals'
@@ -25,4 +37,4 @@ class Meals(Base):
     food_name = Column(String)
     category = Column(Integer)
     calorie = Column(Integer)
-    
+
