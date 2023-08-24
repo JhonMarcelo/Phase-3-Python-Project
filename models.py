@@ -19,11 +19,11 @@ class User(Base):
 
     def __repr__(self):
         return f"\n<User"\
-            + f"id ={self.id}, "\
-            + f"username ={self.username}, "\
-            + f"first_name ={self.first_name}, "\
-            + f"last_name ={self.last_name}, "\
-            + f"weight ={self.weight}, "\
+            + f"id = {self.id}, "\
+            + f"username = {self.username}, "\
+            + f"first_name = {self.first_name}, "\
+            + f"last_name = {self.last_name}, "\
+            + f"weight = {self.weight}, "\
             + f"goal = {self.goal}, "\
             + f"target calorie = {self.target_calorie}, "\
             + f"current calorie = {self.current_calorie}, "\
@@ -38,3 +38,10 @@ class Meals(Base):
     category = Column(Integer)
     calorie = Column(Integer)
 
+    def __repr__(self):
+        return f"\n<Meal"\
+            + f"id = {self.id}, "\
+            + f"food name = {self.food_name}, "\
+            + f"category = {self.category}, "\
+            + f"calorie = {self.calorie}, "\
+            + ">"
