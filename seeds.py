@@ -12,14 +12,14 @@ Session = sessionmaker(bind=engine)
 session = Session() # Query the DB with session example: session.query(ModelOne).all()
 
 # Use ipdb to interact with DB using session
-import ipdb; ipdb.set_trace() # # Dont forget to add ipdb as a dependency - pipenv install ipdb
+# import ipdb; ipdb.set_trace() # # Dont forget to add ipdb as a dependency - pipenv install ipdb
 
 
 
 # For working with an API and retrieving json data
 import requests
 import json
-
+ 
 print("Seeding...")
 # session.query(User.delete())
 
@@ -60,10 +60,23 @@ for _ in range(20):
     
     user = User(username=user_name,first_name=first_name,last_name=last_name,weight=weight,activity_level=activity_level,goal = goal,target_calorie=target_calorie,current_calorie=0)
     
-    session.add(user)
-    session.commit()
+    # session.add(user)
+    # session.commit()
 
 
 # Example request
-# response = requests.get(API_URL)
+# food_response = requests.get(API_URL)
 # json_data = json.loads(response.text)
+
+
+# API-NINJA KEY = g1YS+rGcrHNzKP5Cghvkig==kq6PuzyW9qltjQLs
+
+
+
+query = 'beef burger'
+api_url = 'https://api.api-ninjas.com/v1/nutrition?query={}'.format(query)
+response = requests.get(api_url, headers={'X-Api-Key': 'g1YS+rGcrHNzKP5Cghvkig==kq6PuzyW9qltjQLs'})
+if response.status_code == requests.codes.ok:
+    print(response.text)
+else:
+    print("Error:", response.status_code, response.text)
