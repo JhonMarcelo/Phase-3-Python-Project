@@ -15,3 +15,23 @@
 - Use of many-to-many relationships with SQLAlchemy ORM.
 - Use of additional data structures, such as ranges and tuples.
 - A rubric for this project is available on the next page in this Canvas module. Make sure to take a look before you get started!
+
+List: User could have a list of meals in the day.
+Dictionary: Meal will have; a set of attributes and values
+
+[ ] setup pipenv
+[ ] setup pipfile with dependencies
+[ ] ipdb
+[ ] sqlalchemy
+[ ] alembic
+[ ] faker
+
+create user table
+
+create meal table
+
+CRUD:
+create list of meals
+read meals available
+update my list of meals
+delete my meal
