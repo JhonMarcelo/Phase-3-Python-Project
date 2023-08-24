@@ -36,26 +36,26 @@ for _ in range(20):
     #1 - Sedentary 2 - Lightly - Active 3 - Active 4 - Very Active
     activity_level = random.randint(1,4)
     if activity_level ==1:
-        activiy = -4
+        activity = -4
+        
     if activity_level ==2:
-        activiy = -2
+        activity = -2
     if activity_level ==3:
-        activiy = 0
+        activity = 0
     if activity_level ==4:
-        activiy = 4
+        activity = 4
     
-
 
     random_goal = random.randint(1,3)
     if random_goal == 1:
         goal = "Lose Weight"
-        target_calorie = weight * 13
+        target_calorie = weight * (13 + activity )
     if random_goal == 2:
         goal = "Maintain Weight"
-        target_calorie = weight * 15 
+        target_calorie = weight * (15 + activity)
     if random_goal == 3:
         goal = "Gain Weight"
-        target_calorie = weight * 17
+        target_calorie = weight * (17 + activity)
 
     
     user = User(username=user_name,first_name=first_name,last_name=last_name,weight=weight,activity_level=activity_level,goal = goal,target_calorie=target_calorie)
