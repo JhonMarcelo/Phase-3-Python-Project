@@ -9,7 +9,7 @@ class User(Base):
     __tablename__ = 'users'
     
     id = Column(Integer, primary_key=True )
-    username = Column(String)
+    username = Column(String, unique=True)
     first_name = Column(String)
     last_name = Column(String)
     weight = Column(Integer)
