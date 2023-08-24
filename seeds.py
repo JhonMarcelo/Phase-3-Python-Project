@@ -12,7 +12,7 @@ Session = sessionmaker(bind=engine)
 session = Session() # Query the DB with session example: session.query(ModelOne).all()
 
 # Use ipdb to interact with DB using session
-# import ipdb; ipdb.set_trace() # # Dont forget to add ipdb as a dependency - pipenv install ipdb
+import ipdb; ipdb.set_trace() # # Dont forget to add ipdb as a dependency - pipenv install ipdb
 
 
 
@@ -58,10 +58,12 @@ for _ in range(20):
         target_calorie = weight * (17 + activity)
 
     
-    user = User(username=user_name,first_name=first_name,last_name=last_name,weight=weight,activity_level=activity_level,goal = goal,target_calorie=target_calorie)
-    print(user)
+    user = User(username=user_name,first_name=first_name,last_name=last_name,weight=weight,activity_level=activity_level,goal = goal,target_calorie=target_calorie,current_calorie=0)
+    
+    session.add(user)
+    session.commit()
 
 
 # Example request
-response = requests.get(API_URL)
-json_data = json.loads(response.text)
+# response = requests.get(API_URL)
+# json_data = json.loads(response.text)
