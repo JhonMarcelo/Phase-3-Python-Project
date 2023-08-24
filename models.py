@@ -13,6 +13,7 @@ class User(Base):
     first_name = Column(String)
     last_name = Column(String)
     weight = Column(Integer)
+    activity_level = Column(Integer)
     goal = Column(String)
     target_calorie = Column(Integer)
     current_calorie = Column(Integer)
