@@ -18,4 +18,11 @@ class User(Base):
     current_calorie = Column(Integer)
 
 
+class Meals(Base):
+    __tablename__ = 'meals'
 
+    id = Column(Integer, primary_key=True)
+    food_name = Column(String)
+    category = Column(Integer)
+    calorie = Column(Integer)
+    
