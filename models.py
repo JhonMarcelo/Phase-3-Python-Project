@@ -30,8 +30,8 @@ class User(Base):
             + ">"
 
 
-class Meals(Base):
-    __tablename__ = 'meals'
+class Food(Base):
+    __tablename__ = 'foods'
 
     id = Column(Integer, primary_key=True)
     food_name = Column(String)
