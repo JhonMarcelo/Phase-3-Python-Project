@@ -8,7 +8,9 @@ import time
 
 class CLI():
 
-    current_user = None
+    def __init__(self):
+        current_user = None
+
     def start(self):
         self.clear_screen(44)
         options = ["Login","Exit"]
@@ -22,8 +24,8 @@ class CLI():
 
     def handle_login(self):
         username = input("Enter your username:\n\n")
-        time.sleep(2)
-        print(username)
+        user = User.find_by_username(username)
+        print(f"Hi! {user}!")
 
     def exit(self):
         print("Consistency is the KEY! See ya!")

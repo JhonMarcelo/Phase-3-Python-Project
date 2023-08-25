@@ -1,6 +1,14 @@
 from sqlalchemy.orm import declarative_base, relationship
 from sqlalchemy import Column, Float, Integer, String, ForeignKey
 
+from sqlalchemy.orm import sessionmaker
+from sqlalchemy import create_engine
+
+
+engine = create_engine("sqlite:///data.db")
+Session = sessionmaker(bind=engine)
+session = Session()
+
 
 
 Base = declarative_base()
@@ -23,8 +31,14 @@ class User(Base):
     foods = relationship("Food", backref="User")
 
     @classmethod
-    def find_by_username(username):
-        pass
+    def find_by_username(cls, username):
+        user = session.query(User).filter(User.username.like(username))
+        # import ipdb; ipdb.set_trace()
+        fetched_user = user[0].username
+        if fetched_user == username:
+            return fetched_user
+        else:
+            print("Invalid Username")
 
     def __repr__(self):
         return f"\n<User"\
