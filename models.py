@@ -1,5 +1,5 @@
 from sqlalchemy.orm import declarative_base, relationship
-from sqlalchemy import Column, Integer, String, ForeignKey
+from sqlalchemy import Column, Float, Integer, String, ForeignKey
 
 
 
@@ -42,7 +42,7 @@ class Food(Base):
     id = Column(Integer, primary_key=True)
     food_name = Column(String)
     category = Column(Integer)
-    calorie = Column(Integer)
+    calorie = Column(Float)
 
     #user_id foreign_key
     user_id = Column(Integer, ForeignKey("users.id"))
@@ -53,4 +53,5 @@ class Food(Base):
             + f"food_name = {self.food_name}, "\
             + f"category = {self.category}, "\
             + f"calorie = {self.calorie}, "\
+            + f"user_id = {self.user_id}, "\
             + ">"
