@@ -50,7 +50,7 @@ class Food(Base):
     def __repr__(self):
         return f"\n<Meal"\
             + f"id = {self.id}, "\
-            + f"food name = {self.food_name}, "\
+            + f"food_name = {self.food_name}, "\
             + f"category = {self.category}, "\
             + f"calorie = {self.calorie}, "\
             + ">"
