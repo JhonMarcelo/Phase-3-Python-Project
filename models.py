@@ -1,5 +1,6 @@
-from sqlalchemy.orm import declarative_base
-from sqlalchemy import Column, Integer, String
+from sqlalchemy.orm import declarative_base, relationship
+from sqlalchemy import Column, Integer, String, ForeignKey
+
 
 
 Base = declarative_base()
@@ -17,6 +18,9 @@ class User(Base):
     goal = Column(String)
     target_calorie = Column(Integer)
     current_calorie = Column(Integer)
+
+    #food relationship
+    foods = relationship("Food", backref="User")
 
     def __repr__(self):
         return f"\n<User"\
@@ -39,6 +43,9 @@ class Food(Base):
     food_name = Column(String)
     category = Column(Integer)
     calorie = Column(Integer)
+
+    #user_id foreign_key
+    user_id = Column(Integer, ForeignKey("users.id"))
 
     def __repr__(self):
         return f"\n<Meal"\

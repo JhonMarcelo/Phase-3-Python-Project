@@ -75,7 +75,7 @@ for _ in range(20):
 
 query = 'beef burger'
 api_url = 'https://api.api-ninjas.com/v1/nutrition?query={}'.format(query)
-response = requests.get(api_url, headers={'X-Api-Key': 'g1YS+rGcrHNzKP5Cghvkig==kq6PuzyW9qltjQLs'})
+response = requests.get(api_url, headers={ 'X-Api-Key': 'g1YS+rGcrHNzKP5Cghvkig==kq6PuzyW9qltjQLs'})
 food = json.loads(response.text)
 print(food[0]["calories"])
 # if response.status_code == requests.codes.ok:
