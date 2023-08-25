@@ -10,6 +10,7 @@ class CLI():
 
     def __init__(self):
         current_user = None
+        current_calorie = 0
 
     def start(self):
         self.clear_screen(44)
