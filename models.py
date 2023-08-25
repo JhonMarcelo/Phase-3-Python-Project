@@ -22,6 +22,10 @@ class User(Base):
     #food relationship
     foods = relationship("Food", backref="User")
 
+    @classmethod
+    def find_by_username(username):
+        pass
+
     def __repr__(self):
         return f"\n<User"\
             + f"id = {self.id}, "\
