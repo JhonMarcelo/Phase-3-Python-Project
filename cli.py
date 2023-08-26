@@ -31,11 +31,42 @@ class CLI():
         menu_entry_index = terminal_menu.show()
 
         if options[menu_entry_index] == "Login":
-            self.handle_login()
+            self.handle_existing_user()
         if options[menu_entry_index] == "Create Username":
             self.handle_new_user()
-        else:
+        if options[menu_entry_index] == "Exit":
             self.exit()
+
+    #USER INTERFACE
+    def user_interface(self):
+        print("User Interface")
+
+    #HANDLE EXISTING USER
+    def handle_existing_user(self):
+        username = input("Enter your username:\n")
+        user = User.find_username(username)
+        import ipdb; ipdb.set_trace()
+        if user:
+            self.clear_screen(44)
+            print(f"Welcome back {username}!")
+
+            self.current_user = user.username
+            
+            self.current_user_fname = user.first_name
+            self.current_user_lname = user.last_name
+            self.current_user_weight = user.weight
+            self.current_user_activity = user.activtiy_level
+            self.current_user_goal = user.goal
+            self.current_user_target_calorie = user.target_calorie
+            self.current_calorie=0
+
+            self.user_interface()
+
+        else:
+            print("User not found. Please create one.")
+            time.sleep(2)
+            self.start()
+
 
     #HANDLE NEW USER FUNCTION
     def handle_new_user(self):
@@ -144,10 +175,7 @@ class CLI():
         session.commit()
 
         print("Registration Complete!")
-    def user_interface(self):
-        pass
 
- 
 
     def exit(self):
         print("Consistency is the KEY! See ya!")

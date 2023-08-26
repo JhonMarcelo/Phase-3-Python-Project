@@ -44,8 +44,11 @@ class User(Base):
             print(f"User {username} has been created!")
             time.sleep(1)
             
-            
-            
+    def find_username(username):
+        user = session.query(User).filter_by(username=username).first()
+        
+        if user:
+            return user
 
     def __repr__(self):
         return f"\n<User"\
