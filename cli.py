@@ -39,8 +39,20 @@ class CLI():
 
     #USER INTERFACE
     def user_interface(self):
-        print("User Interface")
-        import ipdb; ipdb.set_trace()
+        self.clear_screen(3)
+        options = ["Start Tracking","Update Weight","Update Goal","Update Activtiy Level"]
+        terminal_menu = TerminalMenu(options)
+        menu_entry_index = terminal_menu.show()
+
+        if options[menu_entry_index] == "Start Tracking":
+            self.handle_existing_user()
+        if options[menu_entry_index] == "Update Weight":
+            self.handle_new_user()
+        if options[menu_entry_index] == "Update Goal":
+            self.exit()
+        if options[menu_entry_index] == "Update Activtiy Level":
+            self.exit()
+        
         
     #HANDLE EXISTING USER
     def handle_existing_user(self):

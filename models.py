@@ -71,7 +71,6 @@ class Food(Base):
     food_name = Column(String)
     category = Column(Integer)
     calorie = Column(Float)
-
     #user_id foreign_key
     user_id = Column(Integer, ForeignKey("users.id"))
 
