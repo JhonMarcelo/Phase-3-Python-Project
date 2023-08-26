@@ -1,8 +1,8 @@
 from sqlalchemy.orm import declarative_base, relationship
-from sqlalchemy import Column, Float, Integer, String, ForeignKey
+from sqlalchemy import create_engine,Column, Float, Integer, String, ForeignKey
 
 from sqlalchemy.orm import sessionmaker
-from sqlalchemy import create_engine
+
 
 
 engine = create_engine("sqlite:///data.db")
@@ -30,16 +30,19 @@ class User(Base):
     #food relationship
     foods = relationship("Food", backref="User")
 
-    @classmethod
-    def find_by_username(cls, username):
-        user = session.query(User).filter(User.username.like(username))
+    # @classmethod
+    def find_or_create_username(username):
+        user = session.query(User).filter_by(username=username).first()
         # import ipdb; ipdb.set_trace()
         
-        fetched_user = user[0].username
-        if fetched_user == username:
-            return fetched_user
+        if user:
+            return user
         else:
-            print("Invalid Username")
+            new_user = User(username = username)
+            session.add(new_user)
+            session.commit()
+            print(f"User {new_user} has been created!")
+            
 
     def __repr__(self):
         return f"\n<User"\
@@ -74,3 +77,4 @@ class Food(Base):
             + f"calorie = {self.calorie}, "\
             + f"user_id = {self.user_id}, "\
             + ">"
+

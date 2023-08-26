@@ -64,6 +64,7 @@ for _ in range(20):
     # session.commit()
 
 
+
 # Example request
 # food_response = requests.get(API_URL)
 # json_data = json.loads(response.text)

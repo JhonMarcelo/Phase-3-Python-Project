@@ -19,27 +19,38 @@ class CLI():
 
     def start(self):
         self.clear_screen(44)
-        options = ["Login","Exit"]
+        options = ["Login","Create Username","Exit"]
         terminal_menu = TerminalMenu(options)
         menu_entry_index = terminal_menu.show()
 
         if options[menu_entry_index] == "Login":
             self.handle_login()
+        if options[menu_entry_index] == "Create Username":
+            self.handle_new_user()
         else:
             self.exit()
 
-    def handle_login(self):
-        username = input("Enter your username:\n")
-        user = User.find_by_username(username)
+    def handle_new_user(self):
+        username = input("Enter a unique username:\n")
+        user = User.find_or_create_username(username)
         if user:
+            print("User already in used! please login")
+            time.sleep(1)
+            self.start()
+            # print(f"\nHi! {user}!\n\nLet's get started!")
+            # self.current_user = user
+
+            # time.sleep(1)
+            # self.clear_screen(44)
+            # self.user_weight()
+        else:
+            self.clear_screen(44)
             print(f"\nHi! {user}!\n\nLet's get started!")
             self.current_user = user
 
-            time.sleep(1)
-            self.clear_screen(44)
+            time.sleep(2)
+            self.clear_screen(5)
             self.user_weight()
-        else:
-            print("Invalid Username")
 
     def user_weight(self):
             weight = input("\nPlease enter your weight:\n")
