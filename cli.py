@@ -40,12 +40,14 @@ class CLI():
     #USER INTERFACE
     def user_interface(self):
         print("User Interface")
-
+        import ipdb; ipdb.set_trace()
+        
     #HANDLE EXISTING USER
     def handle_existing_user(self):
         username = input("Enter your username:\n")
         user = User.find_username(username)
-        import ipdb; ipdb.set_trace()
+        
+        
         if user:
             self.clear_screen(44)
             print(f"Welcome back {username}!")
@@ -54,7 +56,7 @@ class CLI():
             self.current_user_fname = user.first_name
             self.current_user_lname = user.last_name
             self.current_user_weight = user.weight
-            self.current_user_activity = user.activtiy_level
+            self.current_user_activity = user.activity_level
             self.current_user_goal = user.goal
             self.current_user_target_calorie = user.target_calorie
             self.current_calorie=0
