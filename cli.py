@@ -54,10 +54,14 @@ class CLI():
         terminal_menu = TerminalMenu(options)
         menu_entry_index = terminal_menu.show()
 
-        # if options[menu_entry_index] == "1":
-        # if options[menu_entry_index] == "2":
-        # if options[menu_entry_index] == "3":
-        # if options[menu_entry_index] == "4":
+        if options[menu_entry_index] == "1":
+            self.user_activity_level = 1
+        if options[menu_entry_index] == "2":
+            self.user_activity_level = 2
+        if options[menu_entry_index] == "3":
+            self.user_activity_level = 3
+        if options[menu_entry_index] == "4":
+            self.user_activity_level = 4
 
     def exit(self):
         print("Consistency is the KEY! See ya!")
