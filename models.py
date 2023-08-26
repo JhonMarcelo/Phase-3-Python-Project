@@ -38,12 +38,12 @@ class User(Base):
         if user:
             return user
         else:
-            new_user = User(username = username)
-            session.add(new_user)
-            session.commit()
+            # new_user = User(username = username)
+            # session.add(new_user)
+            # session.commit()
             print(f"User {username} has been created!")
-            time.sleep(2)
-            return new_user
+            time.sleep(1)
+            
             
             
 
