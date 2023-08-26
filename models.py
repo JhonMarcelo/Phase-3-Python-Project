@@ -1,6 +1,6 @@
 from sqlalchemy.orm import declarative_base, relationship
 from sqlalchemy import create_engine,Column, Float, Integer, String, ForeignKey
-
+import time
 from sqlalchemy.orm import sessionmaker
 
 
@@ -41,7 +41,10 @@ class User(Base):
             new_user = User(username = username)
             session.add(new_user)
             session.commit()
-            print(f"User {new_user} has been created!")
+            print(f"User {username} has been created!")
+            time.sleep(2)
+            return new_user
+            
             
 
     def __repr__(self):

@@ -60,8 +60,8 @@ for _ in range(20):
     
     user = User(username=user_name,first_name=first_name,last_name=last_name,weight=weight,activity_level=activity_level,goal = goal,target_calorie=target_calorie,current_calorie=0)
     
-    session.add(user)
-    session.commit()
+    # session.add(user)
+    # session.commit()
 
 
 

@@ -34,8 +34,9 @@ class CLI():
         username = input("Enter a unique username:\n")
         user = User.find_or_create_username(username)
         if user:
+            self.clear_screen(44)
             print("User already in used! please login")
-            time.sleep(1)
+            time.sleep(2)
             self.start()
             # print(f"\nHi! {user}!\n\nLet's get started!")
             # self.current_user = user
@@ -49,7 +50,7 @@ class CLI():
             self.current_user = user
 
             time.sleep(2)
-            self.clear_screen(5)
+            self.clear_screen(3)
             self.user_weight()
 
     def user_weight(self):
@@ -120,6 +121,7 @@ class CLI():
 
     def exit(self):
         print("Consistency is the KEY! See ya!")
+        self.clear_screen(44)
 
     def clear_screen(self, lines):
         print("\n"*lines)
