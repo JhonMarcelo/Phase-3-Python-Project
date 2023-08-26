@@ -51,7 +51,6 @@ class CLI():
             print(f"Welcome back {username}!")
 
             self.current_user = user.username
-            
             self.current_user_fname = user.first_name
             self.current_user_lname = user.last_name
             self.current_user_weight = user.weight
