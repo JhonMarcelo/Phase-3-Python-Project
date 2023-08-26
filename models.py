@@ -34,6 +34,7 @@ class User(Base):
     def find_by_username(cls, username):
         user = session.query(User).filter(User.username.like(username))
         # import ipdb; ipdb.set_trace()
+        
         fetched_user = user[0].username
         if fetched_user == username:
             return fetched_user
