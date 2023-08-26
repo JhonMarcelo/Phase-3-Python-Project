@@ -89,21 +89,21 @@ class CLI():
 
         if options[menu_entry_index] == "1":
             self.current_user_goal = 1
-            self.current_user_target_calorie = self.current_user_weight * (13 + self.activity)
+            self.current_user_target_calorie = int(self.current_user_weight) * (13 + self.activity)
 
         if options[menu_entry_index] == "2":
             self.current_user_goal = 2
-            self.current_user_target_calorie = self.current_user_weight * (15 + self.activity)
+            self.current_user_target_calorie = int(self.current_user_weight) * (15 + self.activity)
 
         if options[menu_entry_index] == "3":
             self.current_user_goal = 3
-            self.current_user_target_calorie = self.current_user_weight * (17 + self.activity)
+            self.current_user_target_calorie = int(self.current_user_weight) * (17 + self.activity)
         
-        # import ipdb; ipdb.set_trace()
+        import ipdb; ipdb.set_trace()
 
 
     def user_interface(self):
-        pass:
+        pass
 
  
 
