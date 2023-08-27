@@ -207,7 +207,23 @@ class CLI():
             
     #HANDLE FOOD TRACKING
     def track_food(self):
+        self.clear_screen(44)
+        self.display_calorie()
+        options = ["Add Food","Delete Food","Back"]
+        terminal_menu = TerminalMenu(options)
+        menu_entry_index = terminal_menu.show()
+
+        if options[menu_entry_index] == "Add Food":
+            self.add_food()
+        if options[menu_entry_index] == "Delete Food":
+            self.delete_food()
+        if options[menu_entry_index] == "Back":
+            self.user_interface()
         
+        
+
+    #ADD FOOD
+    def add_food(self):
         self.clear_screen(44)
         self.display_calorie()
         
@@ -242,14 +258,13 @@ class CLI():
             session.commit()
             print(f"Your {search_food} is added!")
             time.sleep(2)
-            self.user_interface()
+            self.track_food()
 
         else:
             print("Sorry, that food is not on the list. Please try again.")
             time.sleep(2)
             self.clear_screen(44)
             self.track_food()
-
     #DISPLAY CALORIE INTAKE AND TARGET
     def display_calorie(self):
 
