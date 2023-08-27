@@ -39,23 +39,7 @@ class CLI():
         if options[menu_entry_index] == "Exit":
             self.exit()
 
-    #USER INTERFACE
-    def user_interface(self):
-        self.clear_screen(2)
-        options = ["Start Tracking","Update Weight","Update Goal","Update Activtiy Level","Exit"]
-        terminal_menu = TerminalMenu(options)
-        menu_entry_index = terminal_menu.show()
 
-        if options[menu_entry_index] == "Start Tracking":
-            self.track_food()
-        if options[menu_entry_index] == "Update Weight":
-            self.update_weight()
-        if options[menu_entry_index] == "Update Goal":
-            self.update_goal()
-        if options[menu_entry_index] == "Update Activtiy Level":
-            self.update_activity_level()
-        if options[menu_entry_index] == "Exit":
-            self.exit()
     
         #HANDLE EXISTING USER
     def handle_existing_user(self):
@@ -106,35 +90,6 @@ class CLI():
             time.sleep(1)
             self.clear_screen(3)
             self.user_fname_lname()
-
-    #HANDLE FOOD TRACKING
-    def track_food(self):
-        
-        self.display_calorie()
-        
-        search_food = input("Enter the food name:")
-        food = Food.find_food(search_food)
-        
-        
-        if food:
-            print("Food exist!")
-            import ipdb; ipdb.set_trace()
-        else:
-            print("Sorry, that food is not on the list. Please try again.")
-            self.track_food()
-
-    def display_calorie(self):
-
-        print(f"You have {self.current_user_target_calorie} calorie/s left.")
-        print(f"Your current calorie intake is {self.current_user_calorie}.\n")
-        self.clear_screen(4)
-    def update_weight(self):
-        pass
-    def update_goal(self):
-        pass
-    def update_activity_level(self):
-        pass
-
 
 
     #USER FNAME AND LNAME FUNCTION
@@ -229,8 +184,74 @@ class CLI():
         getUser = session.query(User).filter_by(username=self.current_user)
         self.current_user_id = getUser[0].id
 
-    
+    #USER INTERFACE
+    def user_interface(self):
+        self.clear_screen(2)
+        options = ["Start Tracking","Update Weight","Update Goal","Update Activtiy Level","Exit"]
+        terminal_menu = TerminalMenu(options)
+        menu_entry_index = terminal_menu.show()
 
+        if options[menu_entry_index] == "Start Tracking":
+            self.track_food()
+        if options[menu_entry_index] == "Update Weight":
+            self.update_weight()
+        if options[menu_entry_index] == "Update Goal":
+            self.update_goal()
+        if options[menu_entry_index] == "Update Activtiy Level":
+            self.update_activity_level()
+        if options[menu_entry_index] == "Exit":
+            self.exit()
+            
+    #HANDLE FOOD TRACKING
+    def track_food(self):
+        
+        self.display_calorie()
+        
+        search_food = input("Enter the food name:")
+        food = Food.find_food(search_food)
+        
+        
+        if food:
+
+            # import ipdb; ipdb.set_trace()
+            food_name = food[0]["name"]
+            calorie = food[0]["calories"]
+            user_id = self.current_user_id
+
+            print("1 - Breakfast","2 - Lunch","3 - Dinner")
+            options = ["1","2","3"]
+            terminal_menu = TerminalMenu(options)
+            menu_entry_index = terminal_menu.show()
+
+            if options[menu_entry_index] == "1":
+             category = 1
+            if options[menu_entry_index] == "2":
+                category = 2
+            if options[menu_entry_index] == "3":
+                category = 3
+
+            add_food = Food(food_name=food_name,category=category,calorie=calorie,user_id=user_id)
+            session.add(add_food)
+            session.commit()
+            print(f"Your {search_food} is added!")
+
+        else:
+            print("Sorry, that food is not on the list. Please try again.")
+            time.sleep(2)
+            self.clear_screen(44)
+            self.track_food()
+
+    def display_calorie(self):
+
+        print(f"You have {self.current_user_target_calorie} calorie/s left.")
+        print(f"Your current calorie intake is {self.current_user_calorie}.\n")
+        self.clear_screen(4)
+    def update_weight(self):
+        pass
+    def update_goal(self):
+        pass
+    def update_activity_level(self):
+        pass
     def exit(self):
         print("Consistency is the KEY! See ya!")
         self.clear_screen(44)
