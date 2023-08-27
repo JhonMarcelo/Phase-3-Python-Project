@@ -220,8 +220,16 @@ class CLI():
         if options[menu_entry_index] == "Back":
             self.user_interface()
         
-        
+    #DELETE FOOD
+    def delete_food(self):
+        existing_food = Food.lookup_food(self.current_user_id)
 
+        if existing_food:
+            pass
+        else:
+            print("You have not added any food yet. Please add one.")
+            time.sleep(2)
+            self.track_food()
     #ADD FOOD
     def add_food(self):
         self.clear_screen(44)

@@ -101,7 +101,9 @@ class Food(Base):
         if food_fetched:
             return food_fetched
         
-
+    def lookup_food(user_id):
+        lookup_food = session.query(Food).filter_by(user_id=user_id).all()
+        return lookup_food
 
 
     def __repr__(self):
