@@ -292,8 +292,8 @@ class CLI():
     #DISPLAY CALORIE INTAKE AND TARGET
     def display_calorie(self):
 
-        print(f"You have {self.current_user_target_calorie} calorie/s left.")
-        print(f"Your current calorie intake is {self.current_user_calorie}.\n")
+        print(f"You have {self.current_user_target_calorie:.2f} calorie/s left.")
+        print(f"Your current calorie intake is {self.current_user_calorie:.2f}.\n")
         self.clear_screen(4)
     
     #UPDATE USER WEIGHT
