@@ -105,7 +105,11 @@ class Food(Base):
         lookup_food = session.query(Food).filter_by(user_id=user_id).all()
         return lookup_food
 
-    
+    def delete_food(user_id,food):
+        lookup_delete = session.query(Food).where(Food.food_name==food,Food.user_id==user_id).first()
+        session.delete(lookup_delete)
+        session.commit()
+        return lookup_delete
 
     def __repr__(self):
         return f"\n<Meal"\

@@ -183,12 +183,15 @@ class CLI():
 
         getUser = session.query(User).filter_by(username=self.current_user)
         self.current_user_id = getUser[0].id
+        time.sleep(1)
+        self.start()
+
 
     #USER INTERFACE
     def user_interface(self):
         
 
-        self.clear_screen(44)
+        self.clear_screen(1)
         self.display_calorie()
         options = ["Start Tracking","Update Weight","Update Goal","Update Activtiy Level","Exit"]
         terminal_menu = TerminalMenu(options)
@@ -230,8 +233,14 @@ class CLI():
             for food in existing_food:
                 print(f"{food.food_name}")
             
-            delete_this_food = input("Which food do you want to delete:")
+            delete_this_food = input("\nWhich food do you want to delete:")
+            deleted_food = Food.delete_food(self.current_user_id,delete_this_food)
+            print("\nFood deleted.")
             
+            self.current_user_calorie -= deleted_food.calorie
+            
+            time.sleep(1)
+            self.track_food()
 
         else:
             print("You have not added any food yet. Please add one.")
