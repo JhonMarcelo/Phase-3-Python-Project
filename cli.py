@@ -186,7 +186,10 @@ class CLI():
 
     #USER INTERFACE
     def user_interface(self):
-        self.clear_screen(2)
+        
+
+        self.clear_screen(44)
+        self.display_calorie()
         options = ["Start Tracking","Update Weight","Update Goal","Update Activtiy Level","Exit"]
         terminal_menu = TerminalMenu(options)
         menu_entry_index = terminal_menu.show()
@@ -205,6 +208,7 @@ class CLI():
     #HANDLE FOOD TRACKING
     def track_food(self):
         
+        self.clear_screen(44)
         self.display_calorie()
         
         search_food = input("Enter the food name:")
@@ -230,10 +234,15 @@ class CLI():
             if options[menu_entry_index] == "3":
                 category = 3
 
+            self.current_user_target_calorie -= calorie
+            self.current_user_calorie += calorie
+
             add_food = Food(food_name=food_name,category=category,calorie=calorie,user_id=user_id)
             session.add(add_food)
             session.commit()
             print(f"Your {search_food} is added!")
+            time.sleep(2)
+            self.user_interface()
 
         else:
             print("Sorry, that food is not on the list. Please try again.")
