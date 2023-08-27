@@ -60,9 +60,11 @@ class CLI():
             self.current_user_weight = user.weight
             self.current_user_activity = user.activity_level
             self.current_user_goal = user.goal
-            self.current_user_target_calorie = user.target_calorie
-            self.current_user_calorie=0
             self.activity = user.activity_level
+            self.current_user_calorie= self.get_existing_intake()
+            self.current_user_target_calorie = user.target_calorie - self.current_user_calorie
+            
+            
             self.user_interface()
 
 
@@ -373,6 +375,17 @@ class CLI():
         
         time.sleep(1)
         self.user_interface()
+
+    def get_existing_intake(self):
+        existing_food = Food.lookup_food(self.current_user_id)
+        total_existing_calorie = 0
+        # import ipdb; ipdb.set_trace()  
+        for total_calorie in existing_food:
+              
+            total_existing_calorie += total_calorie.calorie
+
+        return total_existing_calorie
+            
     def exit(self):
         print("Consistency is the KEY! See ya!")
         self.clear_screen(44)
