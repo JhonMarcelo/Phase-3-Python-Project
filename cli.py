@@ -57,21 +57,7 @@ class CLI():
         if options[menu_entry_index] == "Exit":
             self.exit()
     
-    #HANDLE FOOD TRACKING
-    def track_food(self):
-        search_food = input("Enter the food name:")
-        food = Food.find_food(search_food)
-
-        import ipdb; ipdb.set_trace()
-
-    def update_weight(self):
-        pass
-    def update_goal(self):
-        pass
-    def update_activity_level(self):
-        pass
-
-    #HANDLE EXISTING USER
+        #HANDLE EXISTING USER
     def handle_existing_user(self):
         username = input("Enter your username:\n")
         user = User.find_username(username)
@@ -80,8 +66,9 @@ class CLI():
         if user:
             self.clear_screen(44)
             print(f"Welcome back {username}!")
-            self.user_interface()
 
+            
+            
             self.current_user = user.username
             self.current_user_id = user.id
             self.current_user_fname = user.first_name
@@ -90,9 +77,10 @@ class CLI():
             self.current_user_activity = user.activity_level
             self.current_user_goal = user.goal
             self.current_user_target_calorie = user.target_calorie
-            self.current_calorie=0
+            self.current_user_calorie=0
 
-            
+            self.user_interface()
+
 
         else:
             print("User not found. Please create one.")
@@ -118,6 +106,36 @@ class CLI():
             time.sleep(1)
             self.clear_screen(3)
             self.user_fname_lname()
+
+    #HANDLE FOOD TRACKING
+    def track_food(self):
+        
+        self.display_calorie()
+        
+        search_food = input("Enter the food name:")
+        food = Food.find_food(search_food)
+        
+        
+        if food:
+            print("Food exist!")
+            import ipdb; ipdb.set_trace()
+        else:
+            print("Sorry, that food is not on the list. Please try again.")
+            self.track_food()
+
+    def display_calorie(self):
+
+        print(f"You have {self.current_user_target_calorie} calorie/s left.")
+        print(f"Your current calorie intake is {self.current_user_calorie}.\n")
+        self.clear_screen(4)
+    def update_weight(self):
+        pass
+    def update_goal(self):
+        pass
+    def update_activity_level(self):
+        pass
+
+
 
     #USER FNAME AND LNAME FUNCTION
     def user_fname_lname(self):
@@ -210,9 +228,8 @@ class CLI():
 
         getUser = session.query(User).filter_by(username=self.current_user)
         self.current_user_id = getUser[0].id
-        import ipdb; ipdb.set_trace()
-        
 
+    
 
     def exit(self):
         print("Consistency is the KEY! See ya!")
