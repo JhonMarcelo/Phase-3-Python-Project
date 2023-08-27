@@ -2,7 +2,8 @@ from sqlalchemy.orm import declarative_base, relationship
 from sqlalchemy import create_engine,Column, Float, Integer, String, ForeignKey
 import time
 from sqlalchemy.orm import sessionmaker
-
+import requests
+import json
 
 
 engine = create_engine("sqlite:///data.db")
@@ -30,7 +31,7 @@ class User(Base):
     #food relationship
     foods = relationship("Food", backref="User")
 
-    # @classmethod
+    
     def find_or_create_username(username):
         user = session.query(User).filter_by(username=username).first()
         # import ipdb; ipdb.set_trace()
@@ -73,6 +74,18 @@ class Food(Base):
     calorie = Column(Float)
     #user_id foreign_key
     user_id = Column(Integer, ForeignKey("users.id"))
+
+
+    def find_food(search_food):
+        query = search_food
+        api_url = 'https://api.api-ninjas.com/v1/nutrition?query={}'.format(query)
+        response = requests.get(api_url, headers={ 'X-Api-Key': 'g1YS+rGcrHNzKP5Cghvkig==kq6PuzyW9qltjQLs'})
+        food_fetched = json.loads(response.text)
+
+        if food_fetched:
+            return food_fetched
+        
+
 
     def __repr__(self):
         return f"\n<Meal"\

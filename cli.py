@@ -1,7 +1,7 @@
 
 
 from prettycli import bright_green
-from  models import User, Food
+from models import User, Food
 from simple_term_menu import TerminalMenu
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy import create_engine
@@ -15,6 +15,7 @@ class CLI():
 
     def __init__(self):
         current_user = None 
+        current_user_id = 0
         current_user_calorie = 0
         current_user_target_calorie = 0 
         current_user_fname = None
@@ -26,6 +27,7 @@ class CLI():
 
     def start(self):
         self.clear_screen(44)
+        
         options = ["Login","Create Username","Exit"]
         terminal_menu = TerminalMenu(options)
         menu_entry_index = terminal_menu.show()
@@ -39,21 +41,36 @@ class CLI():
 
     #USER INTERFACE
     def user_interface(self):
-        self.clear_screen(3)
-        options = ["Start Tracking","Update Weight","Update Goal","Update Activtiy Level"]
+        self.clear_screen(2)
+        options = ["Start Tracking","Update Weight","Update Goal","Update Activtiy Level","Exit"]
         terminal_menu = TerminalMenu(options)
         menu_entry_index = terminal_menu.show()
 
         if options[menu_entry_index] == "Start Tracking":
-            self.handle_existing_user()
+            self.track_food()
         if options[menu_entry_index] == "Update Weight":
-            self.handle_new_user()
+            self.update_weight()
         if options[menu_entry_index] == "Update Goal":
-            self.exit()
+            self.update_goal()
         if options[menu_entry_index] == "Update Activtiy Level":
+            self.update_activity_level()
+        if options[menu_entry_index] == "Exit":
             self.exit()
-        
-        
+    
+    #HANDLE FOOD TRACKING
+    def track_food(self):
+        search_food = input("Enter the food name:")
+        food = Food.find_food(search_food)
+
+        import ipdb; ipdb.set_trace()
+
+    def update_weight(self):
+        pass
+    def update_goal(self):
+        pass
+    def update_activity_level(self):
+        pass
+
     #HANDLE EXISTING USER
     def handle_existing_user(self):
         username = input("Enter your username:\n")
@@ -63,8 +80,10 @@ class CLI():
         if user:
             self.clear_screen(44)
             print(f"Welcome back {username}!")
+            self.user_interface()
 
             self.current_user = user.username
+            self.current_user_id = user.id
             self.current_user_fname = user.first_name
             self.current_user_lname = user.last_name
             self.current_user_weight = user.weight
@@ -73,7 +92,7 @@ class CLI():
             self.current_user_target_calorie = user.target_calorie
             self.current_calorie=0
 
-            self.user_interface()
+            
 
         else:
             print("User not found. Please create one.")
@@ -188,6 +207,11 @@ class CLI():
         session.commit()
 
         print("Registration Complete!")
+
+        getUser = session.query(User).filter_by(username=self.current_user)
+        self.current_user_id = getUser[0].id
+        import ipdb; ipdb.set_trace()
+        
 
 
     def exit(self):
