@@ -22,7 +22,7 @@ class CLI():
         current_user_lname = None
         current_user_weight = 0 
         current_user_activity = 0 
-        current_user_goal = 0 
+        current_user_goal = None 
         activity = 0
 
     def start(self):
@@ -62,7 +62,7 @@ class CLI():
             self.current_user_goal = user.goal
             self.current_user_target_calorie = user.target_calorie
             self.current_user_calorie=0
-
+            self.activity = user.activity_level
             self.user_interface()
 
 
@@ -148,23 +148,23 @@ class CLI():
         menu_entry_index = terminal_menu.show()
         
         if options[menu_entry_index] == "1":
-            self.current_user_goal = 1
+            self.current_user_goal = "Lose Weight"
             self.current_user_target_calorie = int(self.current_user_weight) * (13 + self.activity)
             self.current_user_calorie = 0 
             self.save_user_data()        
         if options[menu_entry_index] == "2":
-            self.current_user_goal = 2
+            self.current_user_goal = "Maintain Weight"
             self.current_user_target_calorie = int(self.current_user_weight) * (15 + self.activity)
             self.current_user_calorie = 0
             self.save_user_data() 
         if options[menu_entry_index] == "3":
-            self.current_user_goal = 3
+            self.current_user_goal = "Gain Weight"
             self.current_user_target_calorie = int(self.current_user_weight) * (17 + self.activity)
             self.current_user_calorie = 0
             self.save_user_data() 
  # CHECK ALL Values has been assigned before adding in to the table
     
-
+    #SAVE THE USER DATA
     def save_user_data(self):
         username = self.current_user
         first_name = self.current_user_fname
@@ -250,15 +250,50 @@ class CLI():
             self.clear_screen(44)
             self.track_food()
 
+    #DISPLAY CALORIE INTAKE AND TARGET
     def display_calorie(self):
 
         print(f"You have {self.current_user_target_calorie} calorie/s left.")
         print(f"Your current calorie intake is {self.current_user_calorie}.\n")
         self.clear_screen(4)
+    
+    #UPDATE USER WEIGHT
     def update_weight(self):
-        pass
+        updated_weight = input("Please enter updated weight:")
+        self.current_user_weight = updated_weight
+
+        User.update_user_weight(self.current_user,updated_weight)
+        print(f"Weight updated to {updated_weight}!")
+        time.sleep(1)
+        self.user_interface()
+    
+    #UPDATE USER GOAL
     def update_goal(self):
-        pass
+        print("Let's update your goal!")
+        print("What is your current goal:\n\n1 - Lose Weight\n2 - Maintain Weight\n3 - Gain Weight\n\n")
+        options = ["1","2","3"]
+        terminal_menu = TerminalMenu(options)
+        menu_entry_index = terminal_menu.show()
+        
+        if options[menu_entry_index] == "1":
+            self.current_user_goal = "Lose Weight"
+            self.current_user_target_calorie = int(self.current_user_weight) * (13 + self.activity)
+            User.update_user_goal(self.current_user,self.current_user_goal)
+
+        if options[menu_entry_index] == "2":
+            self.current_user_goal = "Maintain Weight"
+            self.current_user_target_calorie = int(self.current_user_weight) * (15 + self.activity)
+            User.update_user_goal(self.current_user,self.current_user_goal)
+
+        if options[menu_entry_index] == "3":
+            self.current_user_goal = "Gain Weight"
+            self.current_user_target_calorie = int(self.current_user_weight) * (17 + self.activity)
+            User.update_user_goal(self.current_user,self.current_user_goal)
+            
+        print(f"User goal is updated to {self.current_user_goal}")
+        time.sleep(1)
+        self.user_interface()
+
     def update_activity_level(self):
         pass
     def exit(self):

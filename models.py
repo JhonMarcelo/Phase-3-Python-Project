@@ -50,6 +50,18 @@ class User(Base):
         
         if user:
             return user
+        
+    def update_user_weight(username,new_value):
+        user = session.query(User).filter_by(username=username).first()
+        user.weight = new_value
+        session.commit()
+        
+    def update_user_goal(username,new_value):
+        user = session.query(User).filter_by(username=username).first()
+        user.goal = new_value
+        session.commit()
+
+
 
     def __repr__(self):
         return f"\n<User"\
@@ -85,6 +97,7 @@ class Food(Base):
         if food_fetched:
             return food_fetched
         
+
 
 
     def __repr__(self):
