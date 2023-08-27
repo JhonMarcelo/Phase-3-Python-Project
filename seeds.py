@@ -74,22 +74,6 @@ for _ in range(20):
 
 
 
-query = 'beef burger'
-api_url = 'https://api.api-ninjas.com/v1/nutrition?query={}'.format(query)
-response = requests.get(api_url, headers={ 'X-Api-Key': 'g1YS+rGcrHNzKP5Cghvkig==kq6PuzyW9qltjQLs'})
-food_fetched = json.loads(response.text)
-# print(food_fetched[0]["calories"])
-# if response.status_code == requests.codes.ok:
-#     print(response.text)
-# else:
-#     print("Error:", response.status_code, response.text)
-foodName = food_fetched[0]["name"]
-foodCalorie = food_fetched[0]["calories"]
-###TEST###
-first_user = session.query(User).first()
-foods = [Food(food_name=foodName,category=2,calorie=foodCalorie,user_id=first_user.id)]
-print(foods)
-# session.bulk_save_objects(foods)
-# session.commit()
+
 
 import ipdb; ipdb.set_trace()
