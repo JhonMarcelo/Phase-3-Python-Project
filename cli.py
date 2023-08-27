@@ -295,7 +295,45 @@ class CLI():
         self.user_interface()
 
     def update_activity_level(self):
-        pass
+        print("Let's update your activity level!\n")
+        print("What is your current activity level:\n\n1 - Sedentary \n2 - Lightly - Active \n3 - Active \n4 - Very Active\n\n")
+        options = ["1","2","3","4"]
+        terminal_menu = TerminalMenu(options)
+        menu_entry_index = terminal_menu.show()
+        how_active = None
+
+        if options[menu_entry_index] == "1":
+            self.current_user_activity = 1
+            self.activity = -4
+            how_active = "Sedentary"
+            User.update_user_activity_level(self.current_user,self.current_user_activity)
+
+        if options[menu_entry_index] == "2":
+            self.current_user_activity = 2
+            self.activity = -2
+            how_active = "Lightly Active"
+            User.update_user_activity_level(self.current_user,self.current_user_activity)
+
+        if options[menu_entry_index] == "3":
+            self.current_user_activity = 3
+            self.activity = 0
+            how_active = "Active"
+            User.update_user_activity_level(self.current_user,self.current_user_activity)
+
+        if options[menu_entry_index] == "4":
+            self.current_user_activity = 4
+            self.activity = 4
+            how_active = "Very Active"
+            User.update_user_activity_level(self.current_user,self.current_user_activity)
+
+        print(f"User activity level is updated to {how_active}")
+        time.sleep(1)
+        self.user_interface()
+        
+        
+        
+        time.sleep(1)
+        self.user_interface()
     def exit(self):
         print("Consistency is the KEY! See ya!")
         self.clear_screen(44)

@@ -61,6 +61,10 @@ class User(Base):
         user.goal = new_value
         session.commit()
 
+    def update_user_activity_level(username,new_value):
+        user = session.query(User).filter_by(username=username).first()
+        user.activity_level = new_value
+        session.commit()
 
 
     def __repr__(self):
