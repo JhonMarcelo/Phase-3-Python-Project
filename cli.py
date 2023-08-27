@@ -223,9 +223,16 @@ class CLI():
     #DELETE FOOD
     def delete_food(self):
         existing_food = Food.lookup_food(self.current_user_id)
-
+        # import ipdb; ipdb.set_trace()
         if existing_food:
-            pass
+            #len(existing_food)
+            print("Your current foods are:\n")
+            for food in existing_food:
+                print(f"{food.food_name}")
+            
+            delete_this_food = input("Which food do you want to delete:")
+            
+
         else:
             print("You have not added any food yet. Please add one.")
             time.sleep(2)

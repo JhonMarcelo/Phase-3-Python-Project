@@ -105,6 +105,7 @@ class Food(Base):
         lookup_food = session.query(Food).filter_by(user_id=user_id).all()
         return lookup_food
 
+    
 
     def __repr__(self):
         return f"\n<Meal"\
