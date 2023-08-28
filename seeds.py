@@ -75,7 +75,7 @@ for _ in range(20):
 
 
 
-# delete = session.query(User).filter_by(id=21).first()
-# session.delete(delete)
-# session.commit()
+delete = session.query(User).filter_by(id=21).first()
+session.delete(delete)
+session.commit()
 # import ipdb; ipdb.set_trace()

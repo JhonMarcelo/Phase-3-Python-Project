@@ -1,6 +1,6 @@
 
 
-from prettycli import bright_green
+from prettycli import bright_green, bright_red
 from models import User, Food
 from simple_term_menu import TerminalMenu
 from sqlalchemy.orm import sessionmaker
@@ -49,8 +49,8 @@ class CLI():
         
         if user:
             self.clear_screen(44)
-            print(f"Welcome back {username}!")
-
+            print(bright_green(f"Welcome back {username}!"))
+            
             
             
             self.current_user = user.username
@@ -69,7 +69,8 @@ class CLI():
 
 
         else:
-            print("User not found. Please create one.")
+            print(bright_red("User not found."))
+            print("\nPLease create one.")
             time.sleep(2)
             self.start()
 
@@ -80,14 +81,15 @@ class CLI():
         user = User.find_or_create_username(username)
         if user:
             self.clear_screen(44)
-            print("User already in used! please login.")
+            print(bright_red("User already in used!"))
+            print("\nplease login.")
             time.sleep(2)
             self.start()
 
 
         else:
             self.clear_screen(44)
-            print(f"\nHi! {username}!\n\nLet's get started!")
+            print(bright_green(f"\nHi! {username}!\n\nLet's get started!"))
             self.current_user = username
             time.sleep(1)
             self.clear_screen(3)
