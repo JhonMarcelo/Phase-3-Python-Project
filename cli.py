@@ -27,7 +27,7 @@ class CLI():
 
     def start(self):
         self.clear_screen(44)
-        
+        self.banner()
         options = ["Login","Create Username","Exit"]
         terminal_menu = TerminalMenu(options)
         menu_entry_index = terminal_menu.show()
@@ -39,6 +39,25 @@ class CLI():
         if options[menu_entry_index] == "Exit":
             self.exit()
 
+    def banner(self):
+        font = """
+
+ .d8888b.        d8888 888      .d88888b.  8888888b.  8888888 8888888888      88888888888 8888888b.         d8888  .d8888b.  888    d8P  8888888888 8888888b.  
+d88P  Y88b      d88888 888     d88P" "Y88b 888   Y88b   888   888                 888     888   Y88b       d88888 d88P  Y88b 888   d8P   888        888   Y88b 
+888    888     d88P888 888     888     888 888    888   888   888                 888     888    888      d88P888 888    888 888  d8P    888        888    888 
+888           d88P 888 888     888     888 888   d88P   888   8888888             888     888   d88P     d88P 888 888        888d88K     8888888    888   d88P 
+888          d88P  888 888     888     888 8888888P"    888   888                 888     8888888P"     d88P  888 888        8888888b    888        8888888P"  
+888    888  d88P   888 888     888     888 888 T88b     888   888                 888     888 T88b     d88P   888 888    888 888  Y88b   888        888 T88b   
+Y88b  d88P d8888888888 888     Y88b. .d88P 888  T88b    888   888                 888     888  T88b   d8888888888 Y88b  d88P 888   Y88b  888        888  T88b  
+ "Y8888P" d88P     888 88888888 "Y88888P"  888   T88b 8888888 8888888888          888     888   T88b d88P     888  "Y8888P"  888    Y88b 8888888888 888   T88b 
+                                                                                                                                                               
+                                                                                                                                                               
+                                                                                                                                                               
+"""
+        print(font)
+
+                                                                                                                       
+                                                                                                                                                              
 
     
         #HANDLE EXISTING USER
@@ -89,7 +108,8 @@ class CLI():
 
         else:
             self.clear_screen(44)
-            print(bright_green(f"\nHi! {username}!\n\nLet's get started!"))
+            print(bright_green(f"\nHi! {username}!\n\n"))
+            print("Let's get started!")
             self.current_user = username
             time.sleep(1)
             self.clear_screen(3)

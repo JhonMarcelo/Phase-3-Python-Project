@@ -34,14 +34,10 @@ class User(Base):
     
     def find_or_create_username(username):
         user = session.query(User).filter_by(username=username).first()
-        # import ipdb; ipdb.set_trace()
         
         if user:
             return user
         else:
-            # new_user = User(username = username)
-            # session.add(new_user)
-            # session.commit()
             print(f"User {username} has been created!")
             time.sleep(1)
             

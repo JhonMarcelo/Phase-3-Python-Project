@@ -3,7 +3,7 @@ from sqlalchemy.orm import sessionmaker
 from sqlalchemy import create_engine
 # For generating Fake data: https://faker.readthedocs.io/en/master/providers.html
 from faker import Faker
-#add this line so can use fake. somthing
+
 fake = Faker()
 import random
 
@@ -11,12 +11,6 @@ engine = create_engine("sqlite:///data.db")
 Session = sessionmaker(bind=engine)
 session = Session() # Query the DB with session example: session.query(ModelOne).all()
 
-# Use ipdb to interact with DB using session
-# import ipdb; ipdb.set_trace() # # Dont forget to add ipdb as a dependency - pipenv install ipdb
-
-
-
-# For working with an API and retrieving json data
 import requests
 import json
  
@@ -64,18 +58,3 @@ for _ in range(20):
     # session.commit()
 
 
-
-# Example request
-# food_response = requests.get(API_URL)
-# json_data = json.loads(response.text)
-
-
-# API-NINJA KEY = g1YS+rGcrHNzKP5Cghvkig==kq6PuzyW9qltjQLs
-
-
-
-
-delete = session.query(User).filter_by(id=21).first()
-session.delete(delete)
-session.commit()
-# import ipdb; ipdb.set_trace()
