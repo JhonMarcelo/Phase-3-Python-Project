@@ -56,5 +56,3 @@ for _ in range(20):
     
     # session.add(user)
     # session.commit()
-
-
