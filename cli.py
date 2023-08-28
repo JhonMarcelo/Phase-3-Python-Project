@@ -261,6 +261,7 @@ class CLI():
             print("\nFood deleted.")
             
             self.current_user_calorie -= deleted_food.calorie
+            self.current_user_target_calorie += deleted_food.calorie
             
             time.sleep(1)
             self.track_food()
